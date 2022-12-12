@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "888458086277",
+    "project_id": "favoriteplace-73dd6",
+    "storage_bucket": "favoriteplace-73dd6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888458086277:android:302595d0eaf6127e0366ec",
+        "android_client_info": {
+          "package_name": "com.firstapp.favoriteplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888458086277-jnbvr81ps9ffr5o3dhb8judor05vq4gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTAI1apSc2CSvgoEdC_-U5FYMYvGDTKOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888458086277-jnbvr81ps9ffr5o3dhb8judor05vq4gg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
