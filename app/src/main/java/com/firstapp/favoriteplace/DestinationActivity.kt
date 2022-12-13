@@ -33,8 +33,10 @@ class DestinationActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        val stockholm = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(stockholm).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(stockholm))
+        val Stockholm = LatLng(59.20, 18.3)
+        mMap.addMarker(MarkerOptions().position(Stockholm).title("Stockholm city is very nice!"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(Stockholm))
     }
+
 }
+
