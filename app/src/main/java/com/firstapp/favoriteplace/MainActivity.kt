@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun goToAddActivity(){
-        val intent = Intent(this, DestinationActivity::class.java)
+        val intent = Intent(this, ListOfPlacesActivity::class.java)
         startActivity(intent)
 
     }
