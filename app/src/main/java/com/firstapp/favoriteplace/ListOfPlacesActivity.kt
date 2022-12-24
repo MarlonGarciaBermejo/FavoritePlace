@@ -2,22 +2,20 @@ package com.firstapp.favoriteplace
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 class ListOfPlacesActivity : AppCompatActivity() {
 
-    val db = Firebase.firestore
+    private val db = Firebase.firestore
 
-    val differentPlaces = mutableListOf<Places>(
-        Places(R.drawable.loginbutton, "Gothenburg", "Gothenburg is the city with the longest summers in Sweden, 144 days to be precise"),
-        Places(R.drawable.loginbutton, "Stockholm", "The second best place to be!"),
-
-        )
+    private val differentPlaces = mutableListOf<Places>()
 
     lateinit var addPlace: ImageView
 
@@ -29,34 +27,31 @@ class ListOfPlacesActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val adapter = PlacesRecyclerAdapter(this, differentPlaces)
-
         recyclerView.adapter = adapter
 
+        db.collection("places")
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
+                if (snapshot != null) {
+                    differentPlaces.clear()
+                    for (document in snapshot.documents) {
+                        val place = document.toObject<Places>()
+                        if (place != null) {
+                            Log.d("!!!", "$place")
+                            differentPlaces.add(place)
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged()
+            }
 
         addPlace = findViewById(R.id.addPlaceView)
-
         addPlace.setOnClickListener {
-            val intent = Intent(this, addPlaceActivity::class.java)
+            val intent = Intent(this, AddPlaceActivity::class.java)
             startActivity(intent)
 
         }
-
-
-        /*     val data = Places("123",R.drawable.loginbutton)
-
-         db.collection("places")
-             .add(data)
-             .addOnSuccessListener { documentReference ->
-                 Log.d("!!!", "DocumentSnapshot written with ID: ${documentReference.id}")
-             }
-             .addOnFailureListener { e ->
-                 Log.w("!!!", "Error adding document", e)
-             }
-
-         */
-
-
     }
-
-
 }

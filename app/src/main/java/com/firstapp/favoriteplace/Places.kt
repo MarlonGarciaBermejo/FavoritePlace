@@ -1,5 +1,11 @@
 package com.firstapp.favoriteplace
 
-data class Places(var placeImage : Int, var placeName : String? = null, var placeInfo : String? = null) {
+import com.google.firebase.firestore.DocumentId
+
+data class Places(
+    @DocumentId val documentId: String? = null,
+    val nameOfPlaces: String? = "",
+    val placeInfo: String? = ""
+) {
 
 }
