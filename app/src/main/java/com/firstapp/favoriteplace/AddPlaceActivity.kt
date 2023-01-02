@@ -23,10 +23,10 @@ class AddPlaceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_place)
 
-        val addButton = findViewById<Button>(R.id.addFavoriteButton)
+        val addButton = findViewById<Button>(R.id.addPlaceButton)
 
-        addPlaceName = findViewById(R.id.addFavoritePlace)
-        addInfo = findViewById(R.id.addFavoriteInfo)
+        addPlaceName = findViewById(R.id.addPlaceText)
+        addInfo = findViewById(R.id.addInfoText)
 
 
         addButton.setOnClickListener {
