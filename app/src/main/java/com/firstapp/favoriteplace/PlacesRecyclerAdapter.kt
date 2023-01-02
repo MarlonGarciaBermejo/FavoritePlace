@@ -8,8 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PlacesRecyclerAdapter(context: Context, private val places: MutableList<Places>) :
+class PlacesRecyclerAdapter(context: Context, private val places: MutableList<Places>):
     RecyclerView.Adapter<PlacesRecyclerAdapter.ViewHolder>() {
+
+    var onItemClick : ((Places) -> Unit)? = null
 
     val layoutInflater = LayoutInflater.from(context)
 
@@ -25,6 +27,10 @@ class PlacesRecyclerAdapter(context: Context, private val places: MutableList<Pl
 
         holder.nameOfPlaces.text = place.nameOfPlaces
         holder.placeInfo.text = place.placeInfo
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(place)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,7 +40,7 @@ class PlacesRecyclerAdapter(context: Context, private val places: MutableList<Pl
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val nameOfPlaces = itemView.findViewById<TextView>(R.id.nameOfPlaceTextView)
-        var palceImage = itemView.findViewById<ImageView>(R.id.placeImageView)
+        var placeImage = itemView.findViewById<ImageView>(R.id.placeImageView)
         val placeInfo = itemView.findViewById<TextView>(R.id.infoTextView)
     }
 }

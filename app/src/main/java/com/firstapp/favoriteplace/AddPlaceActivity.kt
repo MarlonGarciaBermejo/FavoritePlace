@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -16,6 +17,7 @@ class AddPlaceActivity : AppCompatActivity() {
     lateinit var addInfo: EditText
 
     val db = Firebase.firestore
+    val auth = Firebase.auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +36,13 @@ class AddPlaceActivity : AppCompatActivity() {
 
     fun addPlaceButton() {
 
+        val user = auth.currentUser
         val places = hashMapOf(
             "nameOfPlaces" to addPlaceName.text.toString(),
             "placeInfo" to addInfo.text.toString()
         )
 
-        db.collection("places")
+        db.collection("users").document(user!!.uid).collection("personalPlace")
             .add(places)
             .addOnCompleteListener { documentReference ->
                 Log.d("!!!", "DocumentSnapshot added with ID: ${documentReference}")
