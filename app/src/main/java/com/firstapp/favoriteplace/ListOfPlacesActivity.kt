@@ -78,20 +78,17 @@ class ListOfPlacesActivity : AppCompatActivity() {
                 }
             }
 
-       /* findViewById<ImageView>(R.id.favoriteImageView).setOnClickListener {
-
-            db.collection("users").document(user.uid)
-                .set(
-                    mapOf(
-                        "favorite" to "afrika"
-
-                    )
-                ).addOnSuccessListener {
-                    Log.d("!!!", "set")
-                }
-        }
-
-        */
+        /* findViewById<ImageView>(R.id.favoriteImageView).setOnClickListener {
+             db.collection("users").document(user.uid)
+                 .set(
+                     mapOf(
+                         "favorite" to "afrika"
+                     )
+                 ).addOnSuccessListener {
+                     Log.d("!!!", "set")
+                 }
+         }
+         */
 
         // Goes to AddPlaceActivity and user adds a favorite place
         addPlace = findViewById(R.id.addPlaceView)

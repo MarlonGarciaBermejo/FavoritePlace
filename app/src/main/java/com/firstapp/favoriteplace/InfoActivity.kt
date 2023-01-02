@@ -18,12 +18,11 @@ class InfoActivity : AppCompatActivity() {
             textView.text = getPlaces.placeInfo
         }
 
-       /* val goBackButton = findViewById<Button>(R.id.goBackButton)
-        goBackButton.setOnClickListener {
-            val intent = Intent(this, ListOfPlacesActivity::class.java)
-            startActivity(intent)
-        }
-
-        */
+        /* val goBackButton = findViewById<Button>(R.id.goBackButton)
+         goBackButton.setOnClickListener {
+             val intent = Intent(this, ListOfPlacesActivity::class.java)
+             startActivity(intent)
+         }
+         */
     }
 }

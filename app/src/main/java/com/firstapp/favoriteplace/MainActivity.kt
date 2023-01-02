@@ -76,11 +76,10 @@ class MainActivity : AppCompatActivity() {
                 Log.d("!!!", "Created user succeeded")
                 goToAddActivity()
             } else {
-            Log.d("!!!", "user not created ${task.exception}")
+                Log.d("!!!", "user not created ${task.exception}")
             }
-         }
+        }
 
     }
 
 }
-

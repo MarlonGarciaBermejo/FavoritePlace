@@ -23,10 +23,10 @@ class AddPlaceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_place)
 
-        val addButton = findViewById<Button>(R.id.addButton)
+        val addButton = findViewById<Button>(R.id.addFavoriteButton)
 
-        addPlaceName = findViewById(R.id.addPlaceNameText)
-        addInfo = findViewById(R.id.addInfoText)
+        addPlaceName = findViewById(R.id.addFavoritePlace)
+        addInfo = findViewById(R.id.addFavoriteInfo)
 
 
         addButton.setOnClickListener {
@@ -42,7 +42,7 @@ class AddPlaceActivity : AppCompatActivity() {
             "placeInfo" to addInfo.text.toString()
         )
 
-        db.collection("users").document(user!!.uid).collection("personalPlace")
+        db.collection("places")
             .add(places)
             .addOnCompleteListener { documentReference ->
                 Log.d("!!!", "DocumentSnapshot added with ID: ${documentReference}")
