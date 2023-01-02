@@ -7,7 +7,7 @@
     tools:context=".addPlaceActivity">
 
     <EditText
-        android:id="@+id/addFavoritePlace"
+        android:id="@+id/addPlaceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.128" />
 
     <EditText
-        android:id="@+id/addFavoriteInfo"
+        android:id="@+id/addInfoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.227" />
 
     <Button
-        android:id="@+id/addFavoriteButton"
+        android:id="@+id/addPlaceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add place"
