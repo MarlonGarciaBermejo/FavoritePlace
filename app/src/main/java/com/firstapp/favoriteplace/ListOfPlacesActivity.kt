@@ -3,7 +3,6 @@ package com.firstapp.favoriteplace
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,7 +62,23 @@ class ListOfPlacesActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
             }
 
-        findViewById<Button>(R.id.addUserDataButton).setOnClickListener {
+        db.collection("places")
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
+                if (snapshot != null) {
+                    for (document in snapshot.documents) {
+                        val place = document.toObject<Places>()
+                        if (place != null) {
+                            Log.d("!!!", "$place")
+                            differentPlaces.add(place)
+                        }
+                    }
+                }
+            }
+
+       /* findViewById<ImageView>(R.id.favoriteImageView).setOnClickListener {
 
             db.collection("users").document(user.uid)
                 .set(
@@ -76,12 +91,18 @@ class ListOfPlacesActivity : AppCompatActivity() {
                 }
         }
 
+        */
+
         // Goes to AddPlaceActivity and user adds a favorite place
         addPlace = findViewById(R.id.addPlaceView)
         addPlace.setOnClickListener {
             val intent = Intent(this, AddPlaceActivity::class.java)
             startActivity(intent)
 
+        }
+        findViewById<ImageView>(R.id.favoriteImageView).setOnClickListener{
+            val intent = Intent(this, UserFavoriteActivity::class.java)
+            startActivity(intent)
         }
     }
 }
