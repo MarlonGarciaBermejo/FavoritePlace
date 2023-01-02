@@ -3,10 +3,13 @@ package com.firstapp.favoriteplace
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -14,22 +17,35 @@ import com.google.firebase.ktx.Firebase
 class ListOfPlacesActivity : AppCompatActivity() {
 
     private val db = Firebase.firestore
-
     private val differentPlaces = mutableListOf<Places>()
 
     lateinit var addPlace: ImageView
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_of_places)
 
+        // The recyclerView Adapter
         val recyclerView = findViewById<RecyclerView>(R.id.listRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val adapter = PlacesRecyclerAdapter(this, differentPlaces)
         recyclerView.adapter = adapter
 
-        db.collection("places")
+
+        // Get more information when click on a cell item
+        adapter.onItemClick = {
+            val intent = Intent(this, InfoActivity::class.java)
+            intent.putExtra("places", it)
+            startActivity(intent)
+        }
+
+        auth = Firebase.auth
+        val user = auth.currentUser
+
+        // Views the collection of places in a recyclerView list and listens to updated data
+        db.collection("users").document(user!!.uid).collection("personalPlace")
             .addSnapshotListener { snapshot, e ->
                 if (e != null) {
                     return@addSnapshotListener
@@ -47,6 +63,20 @@ class ListOfPlacesActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
             }
 
+        findViewById<Button>(R.id.addUserDataButton).setOnClickListener {
+
+            db.collection("users").document(user.uid)
+                .set(
+                    mapOf(
+                        "favorite" to "afrika"
+
+                    )
+                ).addOnSuccessListener {
+                    Log.d("!!!", "set")
+                }
+        }
+
+        // Goes to AddPlaceActivity and user adds a favorite place
         addPlace = findViewById(R.id.addPlaceView)
         addPlace.setOnClickListener {
             val intent = Intent(this, AddPlaceActivity::class.java)
