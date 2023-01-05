@@ -25,6 +25,7 @@ class PlacesRecyclerAdapter(context: Context, private val places: MutableList<Pl
 
         val place = places[position]
 
+
         holder.nameOfPlaces.text = place.nameOfPlaces
         holder.placeInfo.text = place.placeInfo
 
@@ -40,7 +41,7 @@ class PlacesRecyclerAdapter(context: Context, private val places: MutableList<Pl
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val nameOfPlaces = itemView.findViewById<TextView>(R.id.nameOfPlaceTextView)
-        var placeImage = itemView.findViewById<ImageView>(R.id.placeImageView)
+        //var placeImage = itemView.findViewById<ImageView>(R.id.placeImageView)
         val placeInfo = itemView.findViewById<TextView>(R.id.infoTextView)
     }
 }

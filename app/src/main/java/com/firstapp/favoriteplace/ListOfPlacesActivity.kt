@@ -9,15 +9,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class ListOfPlacesActivity : AppCompatActivity() {
 
     private val db = Firebase.firestore
     private val differentPlaces = mutableListOf<Places>()
 
+    private lateinit var firebaseFirestore: FirebaseFirestore
+    private lateinit var storageRef: StorageReference
     lateinit var addPlace: ImageView
     lateinit var auth: FirebaseAuth
 
@@ -31,7 +36,6 @@ class ListOfPlacesActivity : AppCompatActivity() {
 
         val adapter = PlacesRecyclerAdapter(this, differentPlaces)
         recyclerView.adapter = adapter
-
 
         // Get more information when click on a cell item
         adapter.onItemClick = {
@@ -101,5 +105,11 @@ class ListOfPlacesActivity : AppCompatActivity() {
             val intent = Intent(this, UserFavoriteActivity::class.java)
             startActivity(intent)
         }
+    }
+    private fun getImage() {
+
+        storageRef = FirebaseStorage.getInstance().reference.child("Images")
+        firebaseFirestore = FirebaseFirestore.getInstance()
+
     }
 }
