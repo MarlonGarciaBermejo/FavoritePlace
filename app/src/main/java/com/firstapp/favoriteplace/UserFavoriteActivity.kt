@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -13,8 +15,8 @@ import com.google.firebase.ktx.Firebase
 
 class UserFavoriteActivity : AppCompatActivity() {
 
-    lateinit var addFavoritePlace: EditText
-    lateinit var addFavoriteInfo: EditText
+    private lateinit var addFavoritePlace: EditText
+    private lateinit var addFavoriteInfo: EditText
 
     val db = Firebase.firestore
     val auth = Firebase.auth
@@ -28,12 +30,12 @@ class UserFavoriteActivity : AppCompatActivity() {
         addFavoritePlace = findViewById(R.id.addFavoritePlace)
         addFavoriteInfo = findViewById(R.id.addFavoriteInfo)
 
-
         addFavoriteButton.setOnClickListener {
             addFavoriteButton()
         }
     }
         fun addFavoriteButton() {
+
             val user = auth.currentUser
             val places = hashMapOf(
                 "nameOfPlaces" to addFavoritePlace.text.toString(),
