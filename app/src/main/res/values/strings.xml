@@ -3,4 +3,13 @@
     <string name="title_activity_destination">DestinationActivity</string>
     <string name="picture">Picture</string>
     <string name="heart">Heart</string>
+    <string name="place">Place</string>
+    <string name="information">Information</string>
+    <string name="add_place">Add place</string>
+    <string name="select_image">select image</string>
+    <string name="addplaceimage">addPlaceImage</string>
+    <string name="userPlace">Place</string>
+    <string name="userInformation">Information</string>
+    <string name="add_userPlace">Add place</string>
+    <string name="select_userImage">Select image</string>
 </resources>

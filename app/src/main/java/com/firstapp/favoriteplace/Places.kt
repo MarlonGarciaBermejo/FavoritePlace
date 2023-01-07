@@ -7,13 +7,13 @@ import com.google.firebase.firestore.DocumentId
 data class Places(
     @DocumentId val documentId: String? = null,
     val nameOfPlaces: String? = "",
-    val placeImage: String? = null,
+    val placeImage: String = "",
     val placeInfo: String? = "") : Parcelable
 {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
+        parcel.readString().toString(),
         parcel.readString()
     )
 
